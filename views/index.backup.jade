@@ -1,0 +1,77 @@
+extends layout
+
+block extraHeader
+    link(rel='stylesheet', href='/assets/jsoneditor/jsoneditor.css')
+    script(src='/assets/jsoneditor/jsoneditor.js')
+
+block content
+    .container
+        .page-header
+            h1=title
+
+        p=description
+
+        #jseditor
+
+        .panel-group
+            div(class="panel panel-default")
+                .panel-heading
+                    p(class="panel-title" data-toggle="collapse" data-target="#help-text")
+                        <span class="glyphicon glyphicon-chevron-down"></span> Hilfe
+                #help-text(class="panel-collapse collapse")
+                    p Ein Komischer Hilfetext
+
+
+    script.
+        var schema = {
+            "title": "Example Schema",
+            "type": "object",
+            "properties": {
+                "firstName": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "gender": {
+                    "enum": ["male", "female"]
+                },
+                "age": {
+                    "description": "Age in years",
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "job": {
+                    "$ref": "job"
+                }
+            },
+            "required": ["firstName", "lastName"]
+        };
+        var job = {
+            "title": "Job description",
+            "type": "object",
+            "properties": {
+                "company": {
+                    "type": "string"
+                },
+                "role": {
+                    "type": "string"
+                }
+            }
+        };
+        var json = { };
+        var container = document.getElementById('jseditor');
+        var options = {
+            schema: schema,
+            schemaRefs: {
+                "job": job
+            },
+            mode: 'code',
+            modes: ['code', 'tree', 'view'], // allowed modes
+            onError: function (err) {
+                alert(err.toString());
+            }
+        };
+        var editor = new JSONEditor(container, options, json);
+
+

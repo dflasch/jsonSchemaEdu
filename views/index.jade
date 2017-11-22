@@ -1,0 +1,54 @@
+extends layout
+
+block link
+  -var active = 'Home';
+
+block extraHeader
+  link(rel='stylesheet', href='/assets/jsoneditor/jsoneditor.css')
+  script(src='/assets/jsoneditor/jsoneditor.js')
+
+block content
+  .container
+    .page-header
+      h2 Hello,World
+      .basics
+        p Wenn man eine neue Sprache lernt, ist es oft hilfreich, mit der einfachst möglichen Aufgabe zu starten. In
+            | JSON Schema ist ein leeres Objekt ein valides Schema und akzeptiert jedes valide JSON.
+        pre
+          span
+          span {
+          span
+          span }
+        p Akzeptiert alles, solange es valides JSON ist...
+          div(class="jsonschema-pass highlight")
+            pre
+              span 42
+          div(class="jsonschema-pass highlight")
+            pre
+              span "I'm a string"
+          div(class="jsonschema-pass highlight")
+            pre
+              span { "an": [ "arbitrarily", "nested" ], "data": "structure" }
+
+      h2 Das Typ Schlüsselwort
+      .type-keyword
+        p https://spacetelescope.github.io/understanding-json-schema/basics.html#hello-world
+
+      h2 Deklarationen
+      .declarations
+        p https://spacetelescope.github.io/understanding-json-schema/basics.html#hello-world
+
+      h2 Typ-spezifische Schlüsselwörter
+      .type-specific-keywords
+        p https://spacetelescope.github.io/understanding-json-schema/reference/type.html
+
+      h2 Generische Schlüsselwörter
+      .generic-specific-keywords
+        p https://spacetelescope.github.io/understanding-json-schema/reference/generic.html
+
+      h2 Quelle
+      p siehe auch
+        a(href="https://spacetelescope.github.io/understanding-json-schema/") https://spacetelescope.github.io/understanding-json-schema/
+
+
+

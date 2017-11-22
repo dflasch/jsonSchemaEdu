@@ -1,0 +1,36 @@
+div.jsoneditor {
+  border: 1px solid #a2a2a2 !important;
+  -webkit-box-shadow: 2px 3px 5px 0px rgba(0,0,0,0.3) !important;
+  -moz-box-shadow: 2px 3px 5px 0px rgba(0,0,0,0.3) !important;
+  box-shadow: 2px 3px 5px 0px rgba(0,0,0,0.3) !important;
+  margin: 20px 0px;
+}
+
+.jsonschema-pass > pre{
+  background-color: #eefecc;
+}
+
+div.jsonschema-fail .highlight {
+  background-color: #ffcccd;
+}
+
+
+div.jsoneditor-menu {
+  background-color: #696c71 !important;
+  border-bottom: 1px solid #a2a2a2 !important;
+}
+
+.ex {
+  pointer-events: none;
+  cursor: default;
+}
+
+#ex-1{
+  pointer-events: auto;
+  cursor: auto;
+}
+
+#help-text{
+  margin-left: 10px;
+  margin-right: 10px;
+}
