@@ -4,7 +4,7 @@ html
   -var menu = {'Home': '/', 'Aufgabe 1': '/ex-1', 'Aufgabe 2': '/ex-2' , 'Aufgabe 3': '/ex-3' , 'Aufgabe 4': '/ex-4' , 'Aufgabe 5': '/ex-5', 'Aufgabe 6': '/ex-6'  };
 
   head
-    title= title
+    title=title
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/assets/bootstrap/css/bootstrap.css')
     script(src='/assets/jquery/jquery.js')
@@ -12,7 +12,7 @@ html
 
     block extraHeader
   body
-    nav(class="navbar navbar-default")
+    nav(class="navbar navbar-default navbar-fixed-top")
       .container-fluid
         .navbar-header
           button(type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar")

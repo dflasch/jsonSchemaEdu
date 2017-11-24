@@ -6,11 +6,18 @@ div.jsoneditor {
   margin: 20px 0px;
 }
 
+body { padding-top: 70px; }
+
+pre
+{
+  white-space: pre-wrap;
+}
+
 .jsonschema-pass > pre{
   background-color: #eefecc;
 }
 
-div.jsonschema-fail .highlight {
+div.jsonschema-fail > pre {
   background-color: #ffcccd;
 }
 
