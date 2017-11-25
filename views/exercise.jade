@@ -40,7 +40,7 @@ block content
             }
         };
         var editor = new JSONEditor(container, options, json);
-        var hilfe = $('<button type="button" class="jsoneditor-help" title="Test">Hilfe ein/ausblenden</button>');
+        var hilfe = $('<button type="button" class="jsoneditor-help" title="Test">Hilfe einblenden</button>');
         $(hilfe).on('click',function(){
           console.log($('.jsoneditor-text-errors').css('display'));
           if($('.jsoneditor-text-errors').css('display') == 'none')
