@@ -9,24 +9,30 @@ block content
         .page-header
             h1=title
 
-        p=description
+        block description
 
         #jseditor
 
-        .panel-group
-            div(class="panel panel-default")
-                .panel-heading
-                    p(class="panel-title" data-toggle="collapse" data-target="#help-text")
-                        <span class="glyphicon glyphicon-chevron-down"></span> Hilfe
-                #help-text(class="panel-collapse collapse")
-                    p=help
-
     script.
-        var schema = #{schema}
+      var data = !{JSON.stringify(schema)};
+        var schema = data;
         var json = {};
         var container = document.getElementById('jseditor');
+        var onChange = function () {
+          try {
+            var parsedJson = JSON.parse(editor.getText());
+            if(!editor.validateSchema(parsedJson)){
+              $('.ace_content').css('background-color', '#ff000038');
+            } else {
+              $('.ace_content').css('background-color', '#0f522738');
+            }
+          } catch (e) {
+            $('.ace_content').css('background-color', '#ff000038');
+          }
+        };
         var options = {
             schema: schema,
+            onChange:onChange,
             mode: 'code',
             modes: ['code', 'tree', 'view'],
             onError: function (err) {
@@ -34,5 +40,17 @@ block content
             }
         };
         var editor = new JSONEditor(container, options, json);
+        var hilfe = $('<button type="button" class="jsoneditor-help" title="Test">Hilfe ein/ausblenden</button>');
+        $(hilfe).on('click',function(){
+          console.log($('.jsoneditor-text-errors').css('display'));
+          if($('.jsoneditor-text-errors').css('display') == 'none')
+            $('.jsoneditor-text-errors').css('display','block');
+          else
+            $('.jsoneditor-text-errors').css('display','none');
+        });
+        $('.jsoneditor-menu').append(hilfe)
+
+
+
 
 

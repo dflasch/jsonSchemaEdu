@@ -6,6 +6,26 @@ div.jsoneditor {
   margin: 20px 0px;
 }
 
+button.jsoneditor-schema-error {
+  border: none;
+  background-color: transparent;
+}
+button.jsoneditor-schema-error:after {
+  content:'!';
+  font-weight:bold;
+}
+.jsoneditor-help:hover{
+  background-color: rgba(255,255,255,0.2) !important;
+}
+.jsoneditor-help{
+  background: none !important;
+  width: auto !important;
+  padding-left: 6px !important;
+  padding-right: 6px !important;
+}
+.jsoneditor-text-errors {
+  display:none;
+}
 body { padding-top: 70px; }
 
 pre
