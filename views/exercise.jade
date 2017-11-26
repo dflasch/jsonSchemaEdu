@@ -61,10 +61,13 @@ block content
           $('.jsoneditor-text-errors').css('display', 'block');
         else
           $('.jsoneditor-text-errors').css('display', 'none');
+
+        $('textarea.ace_text-input').focus();
       };
 
       function onClickReset() {
         editor.setText("");
+        validateJson();
         $('textarea.ace_text-input').focus();
       };
 
@@ -88,7 +91,6 @@ block content
       function $makeResetButton() {
         return $('<button type="button" class="jsoneditor-reset" title="Test">Reset</button>');
       }
-
 
       function $saveJsonForExercise() {
         $.cookie("#{title}", JSON.stringify(editor.getText()));

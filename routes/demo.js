@@ -9,16 +9,17 @@ var jsonFormatConfig = {
 var schema = {
   "$schema": "http://json-schema.org/draft-06/schema#",
   "title": "Product",
-  "description": "A product from Acme's catalog",
+  "description": "A product from a beverage store",
   "type": "object",
   "properties": {
     "id": {
-      "description": "The unique identifier for a product",
       "type": "integer"
     },
     "name": {
-      "description": "Name of the product",
       "type": "string"
+    },
+    "volume": {
+      "type": "number"
     },
     "price": {
       "type": "number",
@@ -34,12 +35,9 @@ var schemaFormatted = jsonFormat(schema,jsonFormatConfig);
 router.get('/', function(req, res, next) {
   res.render('demo',
     { title: 'Demo',
-      description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod ' +
-      'tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam ' +
-      'et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum ' +
-      'dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor ' +
-      'invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo ' +
-      'dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
+      description: 'Diese Aufgabe ist für die Demonstration des Tools gedacht. Das Ziel ist, ein JSON Dokument zu erstellen, ' +
+      'welches zu dem angegeben Schema passt. Das vorliegende Schema beschreibt ein Produkt aus einem Getränkemarkt. ' +
+      'Die Pflichtfelder sind Id, Name und Preis, das (Inhalts-)Volumen hingegen ist optional.',
       schema:schema,
       schemaFormatted:schemaFormatted
     });
