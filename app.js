@@ -39,6 +39,7 @@ app.use('/ex-6', ex6);
 app.use('/assets/jsoneditor', express.static(__dirname + '/node_modules/jsoneditor/dist/'));
 app.use('/assets/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist/'));
 app.use('/assets/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
+app.use('/assets/jquery-cookie', express.static(__dirname + '/node_modules/jquery.cookie/'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
