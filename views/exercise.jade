@@ -14,43 +14,39 @@ block content
         #jseditor
 
     script.
-      var data = !{JSON.stringify(schema)};
-        var schema = data;
-        var json = {};
-        var container = document.getElementById('jseditor');
-        var onChange = function () {
-          try {
-            var parsedJson = JSON.parse(editor.getText());
-            if(!editor.validateSchema(parsedJson)){
-              $('.ace_content').css('background-color', '#ff000038');
-            } else {
-              $('.ace_content').css('background-color', '#0f522738');
-            }
-          } catch (e) {
+      var schema = !{JSON.stringify(schema)};
+      var json = {};
+      var container = document.getElementById('jseditor');
+      var options = {
+        schema: schema,
+        onChange:onChangeJson,
+        mode: 'code',
+        modes: ['code', 'tree', 'view']};
+      var editor = new JSONEditor(container, options, json);
+
+      $('.jsoneditor-menu').append(makeHelpButton().on('click',onClickHelp));
+
+      function onClickHelp(){
+        if ($('.jsoneditor-text-errors').css('display') == 'none')
+          $('.jsoneditor-text-errors').css('display', 'block');
+        else
+          $('.jsoneditor-text-errors').css('display', 'none');
+      };
+
+      function onChangeJson() {
+        try {
+          console.log(this);
+          var parsedJson = JSON.parse(editor.getText());
+          if (!editor.validateSchema(parsedJson)) {
             $('.ace_content').css('background-color', '#ff000038');
+          } else {
+            $('.ace_content').css('background-color', '#0f522738');
           }
-        };
-        var options = {
-            schema: schema,
-            onChange:onChange,
-            mode: 'code',
-            modes: ['code', 'tree', 'view'],
-            onError: function (err) {
-                alert(err.toString());
-            }
-        };
-        var editor = new JSONEditor(container, options, json);
-        var hilfe = $('<button type="button" class="jsoneditor-help" title="Test">Hilfe einblenden</button>');
-        $(hilfe).on('click',function(){
-          console.log($('.jsoneditor-text-errors').css('display'));
-          if($('.jsoneditor-text-errors').css('display') == 'none')
-            $('.jsoneditor-text-errors').css('display','block');
-          else
-            $('.jsoneditor-text-errors').css('display','none');
-        });
-        $('.jsoneditor-menu').append(hilfe)
+        } catch (e) {
+          $('.ace_content').css('background-color', '#ff000038');
+        }
+      };
 
-
-
-
-
+      function makeHelpButton(){
+        return $('<button type="button" class="jsoneditor-help" title="Test">Hilfe einblenden</button>');
+      }
