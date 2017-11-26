@@ -1,215 +1,215 @@
 extends layout
 
 block link
-  -var active = 'Home';
+    -var active = 'Home';
 
 block extraHeader
-  link(rel='stylesheet', href='/assets/jsoneditor/jsoneditor.css')
-  script(src='/assets/jsoneditor/jsoneditor.js')
+    link(rel='stylesheet', href='/assets/jsoneditor/jsoneditor.css')
+    script(src='/assets/jsoneditor/jsoneditor.js')
 
 block content
-  .container
-    .page-header
-      h2 Hello,World
-      .basics
-        p Wenn man eine neue Sprache lernt, ist es oft hilfreich, mit der einfachst möglichen Aufgabe zu starten. In
-            | JSON Schema ist ein leeres Objekt ein valides Schema und akzeptiert jedes valide JSON.
-        pre
-          span
-          span {
-          span
-          span }
-        p Akzeptiert alles, solange es valides JSON ist...
-          div(class="jsonschema-pass highlight")
+    .container
+        .page-header
+            h2 Hello,World
+            .basics
+                p Wenn man eine neue Sprache lernt, ist es oft hilfreich, mit der einfachst möglichen Aufgabe zu starten. In
+                    | JSON Schema ist ein leeres Objekt ein valides Schema und akzeptiert jedes valide JSON.
+                pre
+                    span
+                    span {
+                    span
+                    span }
+                p Akzeptiert alles, solange es valides JSON ist...
+                    div(class="jsonschema-pass highlight")
+                        pre
+                            span 42
+                    div(class="jsonschema-pass highlight")
+                        pre
+                            span "I'm a string"
+                    div(class="jsonschema-pass highlight")
+                        pre
+                            span { "an": [ "arbitrarily", "nested" ], "data": "structure" }
+
+            h2 Das Typ-Schlüsselwort
+            .type-keyword
+                p Das Typ-Schlüsselwort wird verwendet, um einen Typ eines Werts festzulegen. Im folgenden Beispiel werden
+                    | ausschließlich Strings akzeptiert.
+                pre
+                    span { "type" : "string" }
+                div(class="jsonschema-pass highlight")
+                    pre
+                        span "I'm a string"
+                div(class="jsonschema-pass highlight")
+                    pre
+                        span "42"
+                div(class="jsonschema-fail highlight")
+                    pre
+                        span 42
+
+            h2 Deklarationen
+            .declarations
+                p JsonSchema validiert also JSON-Datenstrukturen und wird selbst in JSON definiert. Aber woher erkenne ich,
+                    | dass es sich um ein Schema und nicht einfach eine JSON-Datei handelt? Hierfür wird das $schema
+                    | Schlüsselwort verwendet. Man kann es angeben, muss dies aber nicht tun. Außerdem kann hierüber die Schema-Version
+                    | angegeben werden.
+                pre
+                    span { "$schema": "http://json-schema.org/schema#" }
+                p Darüber hinaus ist es möglich (und außerdem guter Stil), eine ID für das Schema anzugeben. Üblicherweise ist
+                    | dies eine URL.
+                pre
+                    span { "id": "http://yourdomain.com/schemas/myschema.json" }
+
+            h2 Typ-spezifische Schlüsselwörter
+            .type-specific-keywords
+                p Es gibt die sechs Typ-spezifischen Schlüsselwörter/Klassen
+                    strong  string,
+                    strong  numeric,
+                    strong  object,
+                    strong  array,
+                    strong  boolean und
+                    strong  null
+                    | , welche jeweils eigene Besonderheiten mit sich bringen.
+            h3 Strings
+            h4 Längenangaben
             pre
-              span 42
-          div(class="jsonschema-pass highlight")
+                span {
+                span  "type": "string",
+                span  "minLength": 2,
+                span  "maxLength": 3
+                span  }
+            h4 Eingebaute Formate
+            p JsonSchema bring einige Formate mit, die selbsterklärent sind. Darunter unter anderem
+                strong  "date-time",
+                strong  "email" und
+                strong  "hostname"
+                | .
+
+            h3 Numerisch
+            h4 Integer
+            p Um nur ganzzahlige Werte zu erlauben, verwendet man das Integer Schlüsselwort
             pre
-              span "I'm a string"
-          div(class="jsonschema-pass highlight")
+                span { "type" : "integer" }
+            div(class="jsonschema-pass highlight")
+                pre
+                    span 42
+            div(class="jsonschema-fail highlight")
+                pre
+                    span 3,1415926
+            h4 Dezimalzahlen
+            p Möchte man auch Dezimalzahlen erlauben, verwendet man einfach das number Schlüsselwort.
             pre
-              span { "an": [ "arbitrarily", "nested" ], "data": "structure" }
+                span { "type" : "number" }
+            div(class="jsonschema-pass highlight")
+                pre
+                    span 42
+            div(class="jsonschema-pass highlight")
+                pre
+                    span 3,1415926
+            h4 Wertebereich
+            p Darüber hinaus ist es möglich, einen Wertebereich anzugeben.
+            pre
+                span { "type": "number", "minimum": 0, "maximum": 100, "exclusiveMaximum": true }
+            div(class="jsonschema-pass highlight")
+                pre
+                    span 42
+            div(class="jsonschema-fail highlight")
+                pre
+                    span -1
 
-      h2 Das Typ-Schlüsselwort
-      .type-keyword
-        p Das Typ-Schlüsselwort wird verwendet, um einen Typ eines Werts festzulegen. Im folgenden Beispiel werden
-          | ausschließlich Strings akzeptiert.
-        pre
-          span { "type" : "string" }
-        div(class="jsonschema-pass highlight")
-          pre
-            span "I'm a string"
-        div(class="jsonschema-pass highlight")
-          pre
-            span "42"
-        div(class="jsonschema-fail highlight")
-          pre
-            span 42
+            h3 Objekte
+            p Um komplexe Datenstrukturen abbilden zu können, verwendet man unter anderem Objekte. Die Validierungsmöglichkeiten
+                | sind sehr vielfältig. Hier sollen nur die wichtigsten genannt werden.
+            h4 Eigenschaften
+            p Mit dem Schlüsselwort properties, können einem Objekt Eigenschaften zugewiesen werden.
+            pre
+                span { <br/>
+                span   "type": "object", <br/>
+                span   "properties": { <br/>
+                span      "number":      { "type": "number" }, <br/>
+                span      "street_name": { "type": "string" }, <br/>
+                span      "street_type": { "type": "string", <br/>
+                span      "enum": ["Street", "Avenue", "Boulevard"] <br/>
+                span    } <br/>
+                span } <br/>
+            div(class="jsonschema-pass highlight")
+                pre
+                    span { "number": 1600, "street_name": "Pennsylvania", "street_type": "Avenue" }
+            div(class="jsonschema-fail highlight")
+                pre
+                    span { "number": "1600", "street_name": "Pennsylvania", "street_type": "Avenue" }
+            h4 Pflicht-Eigenschaften
+            p Mit dem required Schlüsselwort werden Pflicht-Eigenschaften angegeben.
+            pre
+                span { "type": "object", "properties": { "name" : "string" , ... }, "required" ["name"] }
 
-      h2 Deklarationen
-      .declarations
-        p JsonSchema validiert also JSON-Datenstrukturen und wird selbst in JSON definiert. Aber woher erkenne ich,
-          | dass es sich um ein Schema und nicht einfach eine JSON-Datei handelt? Hierfür wird das $schema
-          | Schlüsselwort verwendet. Man kann es angeben, muss dies aber nicht tun. Außerdem kann hierüber die Schema-Version
-          | angegeben werden.
-        pre
-          span { "$schema": "http://json-schema.org/schema#" }
-        p Darüber hinaus ist es möglich (und außerdem guter Stil), eine ID für das Schema anzugeben. Üblicherweise ist
-          | dies eine URL.
-        pre
-          span { "id": "http://yourdomain.com/schemas/myschema.json" }
+            h3 Arrays
+            p JsonSchema kann natürlich auch Arrays.
+                pre
+                    span { "type": "array" }
+            div(class="jsonschema-pass highlight")
+                pre
+                    span [1, 2, 3, 4, 5]
+            div(class="jsonschema-fail highlight")
+                pre
+                    span { "Not": "an array" }
+            p Darüber hinaus gibt es weitere Möglichkeiten, ein Array zu spezifizieren.
+            h4 Typ des Inhalts festlegen
+            pre
+                span { "type": "array", "items": { "type": "number" } }
+            h4 Länge festlegen
+            pre
+                span { "type": "array", "minItems": 2, "maxItems": 3 }
 
-      h2 Typ-spezifische Schlüsselwörter
-      .type-specific-keywords
-        p Es gibt die sechs Typ-spezifischen Schlüsselwörter/Klassen
-          strong  string,
-          strong  numeric,
-          strong  object,
-          strong  array,
-          strong  boolean und
-          strong  null
-          | , welche jeweils eigene Besonderheiten mit sich bringen.
-      h3 Strings
-      h4 Längenangaben
-      pre
-        span {
-        span  "type": "string",
-        span  "minLength": 2,
-        span  "maxLength": 3
-        span  }
-      h4 Eingebaute Formate
-      p JsonSchema bring einige Formate mit, die selbsterklärent sind. Darunter unter anderem
-        strong  "date-time",
-        strong  "email" und
-        strong  "hostname"
-        |.
+            h3 Boolean
+            p Wahr/Falsch-Werte gibt man über das Boolean Schlüsselwort an. Es sind dann auch nur true/false als Werte erlaubt.
+            pre
+                span { "type": "boolean" }
+            div(class="jsonschema-pass highlight")
+                pre
+                    span true
+            div(class="jsonschema-pass highlight")
+                pre
+                    span false
+            div(class="jsonschema-fail highlight")
+                pre
+                    span "true"
+            div(class="jsonschema-fail highlight")
+                pre
+                    span { "Not": "an array" }
 
-      h3 Numerisch
-      h4 Integer
-      p Um nur ganzzahlige Werte zu erlauben, verwendet man das Integer Schlüsselwort
-      pre
-        span { "type" : "integer" }
-      div(class="jsonschema-pass highlight")
-        pre
-          span 42
-      div(class="jsonschema-fail highlight")
-        pre
-          span 3,1415926
-      h4 Dezimalzahlen
-      p Möchte man auch Dezimalzahlen erlauben, verwendet man einfach das number Schlüsselwort.
-      pre
-        span { "type" : "number" }
-      div(class="jsonschema-pass highlight")
-        pre
-          span 42
-      div(class="jsonschema-pass highlight")
-        pre
-          span 3,1415926
-      h4 Wertebereich
-      p Darüber hinaus ist es möglich, einen Wertebereich anzugeben.
-      pre
-        span { "type": "number", "minimum": 0, "maximum": 100, "exclusiveMaximum": true }
-      div(class="jsonschema-pass highlight")
-        pre
-          span 42
-      div(class="jsonschema-fail highlight")
-        pre
-          span -1
+            h2 Generische Schlüsselwörter
+            .generic-specific-keywords
 
-      h3 Objekte
-      p Um komplexe Datenstrukturen abbilden zu können, verwendet man unter anderem Objekte. Die Validierungsmöglichkeiten
-        | sind sehr vielfältig. Hier sollen nur die wichtigsten genannt werden.
-      h4 Eigenschaften
-      p Mit dem Schlüsselwort properties, können einem Objekt Eigenschaften zugewiesen werden.
-      pre
-        span { <br/>
-        span   "type": "object", <br/>
-        span   "properties": { <br/>
-        span      "number":      { "type": "number" }, <br/>
-        span      "street_name": { "type": "string" }, <br/>
-        span      "street_type": { "type": "string", <br/>
-        span      "enum": ["Street", "Avenue", "Boulevard"] <br/>
-        span    } <br/>
-        span } <br/>
-      div(class="jsonschema-pass highlight")
-        pre
-          span { "number": 1600, "street_name": "Pennsylvania", "street_type": "Avenue" }
-      div(class="jsonschema-fail highlight")
-        pre
-          span { "number": "1600", "street_name": "Pennsylvania", "street_type": "Avenue" }
-      h4 Pflicht-Eigenschaften
-      p Mit dem required Schlüsselwort werden Pflicht-Eigenschaften angegeben.
-      pre
-        span { "type": "object", "properties": { "name" : "string" , ... }, "required" ["name"] }
+            h3 Metadaten
+            p Ein paar Schlüsselworte werden nicht für die Validierung verwendet, sondern um ein Schema zu beschreiben. Darunter
+                strong  title,
+                strong  description und
+                strong  default
+                | . Title und description sind Strings, mit default kann man Standard-Werte angeben.
+            pre
+                span {
+                span   "title" : "Match anything",
+                span   "description" : "This is a schema that matches anything.",
+                span   "default" : "Default value"
+                span   }
+            h3 Enumerations
+            p Um Werte fest vorzugeben, können Enumerations verwendet werden.
+            pre
+                span { <br/>
+                span   "type": "string", <br/>
+                span   "enum": ["red", "green"] <br/>
+                span }
+            div(class="jsonschema-pass highlight")
+                pre
+                    span "green"
+            div(class="jsonschema-fail highlight")
+                pre
+                    span "yellow"
 
-      h3 Arrays
-      p JsonSchema kann natürlich auch Arrays.
-        pre
-          span { "type": "array" }
-      div(class="jsonschema-pass highlight")
-        pre
-          span [1, 2, 3, 4, 5]
-      div(class="jsonschema-fail highlight")
-        pre
-          span { "Not": "an array" }
-      p Darüber hinaus gibt es weitere Möglichkeiten, ein Array zu spezifizieren.
-      h4 Typ des Inhalts festlegen
-      pre
-        span { "type": "array", "items": { "type": "number" } }
-      h4 Länge festlegen
-      pre
-        span { "type": "array", "minItems": 2, "maxItems": 3 }
-
-      h3 Boolean
-      p Wahr/Falsch-Werte gibt man über das Boolean Schlüsselwort an. Es sind dann auch nur true/false als Werte erlaubt.
-      pre
-        span { "type": "boolean" }
-      div(class="jsonschema-pass highlight")
-        pre
-          span true
-      div(class="jsonschema-pass highlight")
-        pre
-          span false
-      div(class="jsonschema-fail highlight")
-        pre
-          span "true"
-      div(class="jsonschema-fail highlight")
-        pre
-          span { "Not": "an array" }
-
-      h2 Generische Schlüsselwörter
-      .generic-specific-keywords
-
-      h3 Metadaten
-      p Ein paar Schlüsselworte werden nicht für die Validierung verwendet, sondern um ein Schema zu beschreiben. Darunter
-        strong  title,
-        strong  description und
-        strong  default
-        | . Title und description sind Strings, mit default kann man Standard-Werte angeben.
-      pre
-        span {
-        span   "title" : "Match anything",
-        span   "description" : "This is a schema that matches anything.",
-        span   "default" : "Default value"
-        span   }
-      h3 Enumerations
-      p Um Werte fest vorzugeben, können Enumerations verwendet werden.
-      pre
-        span { <br/>
-        span   "type": "string", <br/>
-        span   "enum": ["red", "green"] <br/>
-        span }
-      div(class="jsonschema-pass highlight")
-        pre
-          span "green"
-      div(class="jsonschema-fail highlight")
-        pre
-          span "yellow"
-
-      h2 Quelle & weiterführende Informationen
-      a(href="https://spacetelescope.github.io/understanding-json-schema/") https://spacetelescope.github.io/understanding-json-schema/ <br/>
-      a(href="https://www.tutorialspoint.com/json/json_schema.htm") https://www.tutorialspoint.com/json/json_schema.htm <br/>
-      a(href="http://json-schema.org/example1.html") http://json-schema.org/example1.html <br/>
+            h2 Quelle & weiterführende Informationen
+            a(href="https://spacetelescope.github.io/understanding-json-schema/") https://spacetelescope.github.io/understanding-json-schema/ <br/>
+            a(href="https://www.tutorialspoint.com/json/json_schema.htm") https://www.tutorialspoint.com/json/json_schema.htm <br/>
+            a(href="http://json-schema.org/example1.html") http://json-schema.org/example1.html <br/>
 
 
 

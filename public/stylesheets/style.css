@@ -1,63 +1,68 @@
 div.jsoneditor {
-  border: 1px solid #a2a2a2 !important;
-  -webkit-box-shadow: 2px 3px 5px 0px rgba(0,0,0,0.3) !important;
-  -moz-box-shadow: 2px 3px 5px 0px rgba(0,0,0,0.3) !important;
-  box-shadow: 2px 3px 5px 0px rgba(0,0,0,0.3) !important;
-  margin: 20px 0px;
+    border: 1px solid #a2a2a2 !important;
+    -webkit-box-shadow: 2px 3px 5px 0px rgba(0, 0, 0, 0.3) !important;
+    -moz-box-shadow: 2px 3px 5px 0px rgba(0, 0, 0, 0.3) !important;
+    box-shadow: 2px 3px 5px 0px rgba(0, 0, 0, 0.3) !important;
+    margin: 20px 0px;
 }
 
 button.jsoneditor-schema-error {
-  border: none;
-  background-color: transparent;
+    border: none;
+    background-color: transparent;
 }
+
 button.jsoneditor-schema-error:after {
-  content:'!';
-  font-weight:bold;
+    content: '!';
+    font-weight: bold;
 }
-.jsoneditor-help:hover{
-  background-color: rgba(255,255,255,0.2) !important;
+
+.jsoneditor-help:hover {
+    background-color: rgba(255, 255, 255, 0.2) !important;
 }
-.jsoneditor-help{
-  background: none !important;
-  width: auto !important;
-  padding-left: 6px !important;
-  padding-right: 6px !important;
+
+.jsoneditor-help {
+    background: none !important;
+    width: auto !important;
+    padding-left: 6px !important;
+    padding-right: 6px !important;
 }
+
 .jsoneditor-text-errors {
-  display:none;
-}
-body { padding-top: 70px; }
-
-pre
-{
-  white-space: pre-wrap;
+    display: none;
 }
 
-.jsonschema-pass > pre{
-  background-color: #eefecc;
+body {
+    padding-top: 70px;
+}
+
+pre {
+    white-space: pre-wrap;
+}
+
+.jsonschema-pass > pre {
+    background-color: #0f522738;
 }
 
 div.jsonschema-fail > pre {
-  background-color: #ffcccd;
+    background-color: #ff000038;
 }
 
-
 div.jsoneditor-menu {
-  background-color: #696c71 !important;
-  border-bottom: 1px solid #a2a2a2 !important;
+    background-color: #696c71 !important;
+    border-bottom: 1px solid #a2a2a2 !important;
 }
 
 .ex {
-  pointer-events: none;
-  cursor: default;
+    pointer-events: none;
+    cursor: default;
 }
 
-#ex-1{
-  pointer-events: auto;
-  cursor: auto;
+#ex-1 {
+    pointer-events: auto;
+    cursor: auto;
 }
 
-#help-text{
-  margin-left: 10px;
-  margin-right: 10px;
+#help-text {
+    margin-left: 10px;
+    margin-right: 10px;
 }
