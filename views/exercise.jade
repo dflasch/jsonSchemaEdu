@@ -46,9 +46,14 @@ block content
         }
 
         $('.jsoneditor-menu').append($makeHelpButton().on('click', $onClickHelp));
+        $('.jsoneditor-menu').append($makeResetButton().on('click', onClickReset));
+
         $(window).bind('beforeunload', $saveJsonForExercise);
         editor.aceEditor.setOptions({maxLines: Infinity});
+
         validateJson();
+
+        $('textarea.ace_text-input').focus();
       }
 
       function $onClickHelp() {
@@ -56,6 +61,11 @@ block content
           $('.jsoneditor-text-errors').css('display', 'block');
         else
           $('.jsoneditor-text-errors').css('display', 'none');
+      };
+
+      function onClickReset() {
+        editor.setText("");
+        $('textarea.ace_text-input').focus();
       };
 
       function validateJson() {
@@ -75,6 +85,11 @@ block content
         return $('<button type="button" class="jsoneditor-help" title="Test">Hilfe einblenden</button>');
       }
 
+      function $makeResetButton() {
+        return $('<button type="button" class="jsoneditor-reset" title="Test">Reset</button>');
+      }
+
+
       function $saveJsonForExercise() {
         $.cookie("#{title}", JSON.stringify(editor.getText()));
       }
@@ -83,7 +98,6 @@ block content
         try {
           return $.cookie("#{title}").replace(/\\n/g, '').replace(/\\"/g, '"').replace(/^"/, '').replace(/"$/, '');
         } catch (e) {
-          return "{}";
+          return "";
         }
       }
-

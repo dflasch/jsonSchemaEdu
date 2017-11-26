@@ -27,6 +27,16 @@ button.jsoneditor-schema-error:after {
     padding-right: 6px !important;
 }
 
+.jsoneditor-reset:hover {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+}
+.jsoneditor-reset {
+    background: none !important;
+    width: auto !important;
+    padding-left: 6px !important;
+    padding-right: 6px !important;
+}
+
 .jsoneditor-text-errors {
     display: none;
 }
