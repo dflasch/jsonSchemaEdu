@@ -13,12 +13,20 @@ block content
 
         #jseditor
 
+    script
+        if schema
+            | var schema = !{JSON.stringify(schema)}
+        else
+            | var schema = {};
+
     script.
       var editor = null;
-      var schema = !{JSON.stringify(schema)};
-      var container = document.getElementById('jseditor');
+      var container = "";
+      var options = {};
 
-      var options = {
+      container = document.getElementById('jseditor');
+
+      options = {
         schema: schema,
         onChange: validateJson,
         onModeChange: validateJson,
@@ -75,7 +83,7 @@ block content
         try {
           return $.cookie("#{title}").replace(/\\n/g, '').replace(/\\"/g, '"').replace(/^"/, '').replace(/"$/, '');
         } catch (e) {
-          return {};
+          return "{}";
         }
       }
 
