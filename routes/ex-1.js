@@ -7,41 +7,40 @@ var jsonFormatConfig = {
 };
 
 var schema = {
-  "$schema": "http://json-schema.org/draft-06/schema#",
-  "title": "Product",
-  "description": "A product from Acme's catalog",
+  "title": "Person",
   "type": "object",
   "properties": {
-    "id": {
-      "description": "The unique identifier for a product",
-      "type": "integer"
-    },
-    "name": {
-      "description": "Name of the product",
+    "firstName": {
       "type": "string"
     },
-    "price": {
-      "type": "number",
-      "exclusiveMinimum": 0
+    "lastName": {
+      "type": "string"
+    },
+    "age": {
+      "description": "Age in years",
+      "type": "integer",
+      "minimum": 0
+    },
+    "sex": {
+      "type": "string",
+      "enum": ["male", "female"]
     }
   },
-  "required": ["id", "name", "price"]
+  "required": ["firstName", "lastName","age","sex"]
 };
 
-var schemaFormatted = jsonFormat(schema,jsonFormatConfig);
+var schemaFormatted = [];
+schemaFormatted.push(jsonFormat(schema, jsonFormatConfig));
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
   res.render('ex-1',
-    { title: 'Aufgabe 1',
-      description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod ' +
-      'tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam ' +
-      'et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum ' +
-      'dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor ' +
-      'invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo ' +
-      'dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
-      schema:schema,
-      schemaFormatted:schemaFormatted
+    {
+      title: 'Aufgabe 1',
+      description: 'Das folgende Schema wird verwendet, um den Datenssatz für eine Person zu validieren. Definiere ein ' +
+      'hierzu passendes Json-Objekt.',
+      schema: schema,
+      schemaFormatted: schemaFormatted
     });
 });
 

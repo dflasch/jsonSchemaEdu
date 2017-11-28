@@ -3,8 +3,9 @@ extends exercise
 block description
     p=description
 
-    pre
-        span !{schemaFormatted.replace(/&/g, '&amp;').replace(/ /g, '&nbsp;').replace(/\n/g, '<br/>')}
+    each item in schemaFormatted
+        pre
+            span !{item.replace(/&/g, '&amp;').replace(/ /g, '&nbsp;').replace(/\n/g, '<br/>')}
 
 block link
     -var active = 'Aufgabe 1';

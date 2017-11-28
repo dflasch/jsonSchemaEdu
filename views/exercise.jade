@@ -19,6 +19,12 @@ block content
         else
             | var schema = {};
 
+    script
+        if schemaRefs
+            | var schemaRefs = !{JSON.stringify(schemaRefs)}
+        else
+            | var schemaRefs = {};
+
     script.
       var editor = null;
       var container = "";
@@ -28,6 +34,7 @@ block content
 
       options = {
         schema: schema,
+        schemaRefs:schemaRefs,
         onChange: validateJson,
         onModeChange: validateJson,
         mode: 'code',
@@ -53,7 +60,9 @@ block content
 
         validateJson();
 
-        $('textarea.ace_text-input').focus();
+        $(document).ready(function () {
+          $('textarea.ace_text-input').focus();
+        });
       }
 
       function $onClickHelp() {

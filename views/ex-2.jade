@@ -1,4 +1,11 @@
 extends exercise
 
+block description
+    p=description
+
+    each item in schemaFormatted
+        pre
+            span !{item.replace(/&/g, '&amp;').replace(/ /g, '&nbsp;').replace(/\n/g, '<br/>')}
+
 block link
     -var active = 'Aufgabe 2';
