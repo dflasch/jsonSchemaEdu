@@ -1,16 +1,47 @@
 var express = require('express');
 var router = express.Router();
+var jsonFormat = require('json-format');
+var jsonFormatConfig = {
+  type: 'space',
+  size: 2
+};
+
+var schemaRefs = {
+  "address": {
+    "type": "object",
+    "properties": {
+      "street_address": {"type": "string"},
+      "city": {"type": "string"},
+      "state": {"type": "string"}
+    },
+    "required": ["street_address", "city", "state"]
+  }
+};
+
+var schema = {
+  "allOf": [
+    {"$ref": "address"},
+    {
+      "properties": {
+        "type": {"enum": ["residential", "business"]}
+      }
+    }
+  ]
+};
+
+var schemaFormatted = [];
+schemaFormatted.push(jsonFormat(schema, jsonFormatConfig));
+schemaFormatted.push(jsonFormat(schemaRefs, jsonFormatConfig));
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
   res.render('ex-3',
-    { title: 'Aufgabe 3',
-      description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod ' +
-      'tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam ' +
-      'et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum ' +
-      'dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor ' +
-      'invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo ' +
-      'dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'
+    {
+      title: 'Aufgabe 3',
+      description: '',
+      schema: schema,
+      schemaRefs: schemaRefs,
+      schemaFormatted: schemaFormatted
     });
 });
 
