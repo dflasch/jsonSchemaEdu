@@ -10,20 +10,23 @@ var schemaRefs = {
   "address": {
     "type": "object",
     "properties": {
+      "name": {"type":"string"},
       "street_address": {"type": "string"},
       "city": {"type": "string"},
-      "state": {"type": "string"}
+      "post_code": {"type": "number"},
+      "phone_number" : {"type":"number"}
     },
-    "required": ["street_address", "city", "state"]
+    "required": ["name","street_address", "city", "post_code"]
   }
 };
 
 var schema = {
+  "type":"object",
   "allOf": [
     {"$ref": "address"},
     {
       "properties": {
-        "type": {"enum": ["residential", "business"]}
+        "type": {"enum": ["private", "business"]}
       }
     }
   ]
@@ -38,7 +41,9 @@ router.get('/', function (req, res, next) {
   res.render('ex-3',
     {
       title: 'Aufgabe 3',
-      description: '',
+      description: 'Mit folgedem Schema kann ein Kontakt beschrieben werden. Ein Kontakt kann hierbei privat oder geschäftlich ' +
+      'sein. Zu einem Kontakt muss der Name, die Adressdaten sowie die Art des Kontakts (privat/geschäftlich) angegeben werden. ' +
+      'Schreibe ein hierzu passendes Json-Objekt.',
       schema: schema,
       schemaRefs: schemaRefs,
       schemaFormatted: schemaFormatted

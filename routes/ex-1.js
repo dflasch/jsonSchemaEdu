@@ -21,12 +21,12 @@ var schema = {
       "type": "integer",
       "minimum": 0
     },
-    "sex": {
+    "gender": {
       "type": "string",
       "enum": ["male", "female"]
     }
   },
-  "required": ["firstName", "lastName","age","sex"]
+  "required": ["firstName", "lastName","age","gender"]
 };
 
 var schemaFormatted = [];
@@ -37,8 +37,9 @@ router.get('/', function (req, res, next) {
   res.render('ex-1',
     {
       title: 'Aufgabe 1',
-      description: 'Das folgende Schema wird verwendet, um den Datenssatz für eine Person zu validieren. Definiere ein ' +
-      'hierzu passendes Json-Objekt.',
+      description: 'Dieses Schema beschreibt eine Person. Eine Person wird durch die Felder Vorname, Nachname, Alter und ' +
+      'Geschlecht beschrieben. Definiere ein hierzu passendes Json-Objekt. Sobald eine gültige Personenbeschreibung vorliegt, ' +
+      'wird der Texteditor grün eingefärbt.',
       schema: schema,
       schemaFormatted: schemaFormatted
     });

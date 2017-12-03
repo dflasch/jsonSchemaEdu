@@ -16,6 +16,18 @@ button.jsoneditor-schema-error:after {
     font-weight: bold;
 }
 
+.row {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+    flex-wrap: wrap;
+}
+.row > [class*='col-'] {
+    display: flex;
+    flex-direction: column;
+}
+
 .jsoneditor-help:hover {
     background-color: rgba(255, 255, 255, 0.2) !important;
 }
@@ -47,6 +59,8 @@ body {
 
 pre {
     white-space: pre-wrap;
+    line-height: 1.2 !important;
+    height: 100%;
 }
 
 .jsonschema-pass > pre {
@@ -75,4 +89,8 @@ div.jsoneditor-menu {
 #help-text {
     margin-left: 10px;
     margin-right: 10px;
+}
+
+#jseditor{
+    padding:0px !important;
 }
