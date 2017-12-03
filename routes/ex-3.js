@@ -29,7 +29,8 @@ var schema = {
         "type": {"enum": ["private", "business"]}
       }
     }
-  ]
+  ],
+  "required":["type"]
 };
 
 var schemaFormatted = [];
@@ -41,7 +42,7 @@ router.get('/', function (req, res, next) {
   res.render('ex-3',
     {
       title: 'Aufgabe 3',
-      description: 'Mit folgedem Schema kann ein Kontakt beschrieben werden. Ein Kontakt kann hierbei privat oder geschäftlich ' +
+      description: 'Mit folgendem Schema kann ein Kontakt beschrieben werden. Ein Kontakt kann hierbei privat oder geschäftlich ' +
       'sein. Zu einem Kontakt muss der Name, die Adressdaten sowie die Art des Kontakts (privat/geschäftlich) angegeben werden. ' +
       'Schreibe ein hierzu passendes Json-Objekt.',
       schema: schema,
