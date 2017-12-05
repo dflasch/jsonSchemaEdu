@@ -17,7 +17,7 @@ var schema = {
     }
   },
   "required":["$schema","$id","title","type"]
-}
+};
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('ex-4',
