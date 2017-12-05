@@ -1,21 +1,52 @@
 var express = require('express');
 var router = express.Router();
+var jsonFormat = require('json-format');
+var schemaFormatted = [];
+var jsonFormatConfig = {
+  type: 'space',
+  size: 2
+};
+
+var jsonExample = {
+  "name":"Daft Punk",
+  "founded_in":1993,
+  "biography":"Daft Punk ist eine im Jahr 1993 gegründete französische Formation der French-House-Musik ...."
+}
+
+schemaFormatted.push(jsonFormat(jsonExample, jsonFormatConfig));
 
 var schemaRefs = {
   "artist_description": {
     "type": "object",
     "properties": {
+
       "name": {
-        "type": "string",
-        "enum": ["string"]
+        "type": "object",
+        "properties":{
+          "type":{
+            "type":"string",
+            "enum": ["string"]
+          }
+        }
       },
-      "founded_in":{
-        "type": "string",
-        "enum":["number","integer"]
+
+      "founded_in": {
+        "type":"object",
+        "properties":{
+          "type:":{
+            "type":"string",
+            "enum":["number","integer"]
+          }
+        }
       },
       "biography":{
-        "type":"string",
-        "enum":["string"]
+        "type":"object",
+        "properties":{
+          "type":{
+            "type:":"string",
+            "enum":["string"]
+          }
+        }
       }
     },
     "required":["name","founded_in","biography"]
@@ -50,7 +81,8 @@ router.get('/', function(req, res, next) {
       'werden. Darüber hinaus sind wieder die Felder mit Meta-Informationen $schema, $id, title und type nötig. Eine gültige' +
       'Json-Datei könnte z.B. folgendermaßen aussehen:',
       schema:schema,
-      schemaRefs:schemaRefs
+      schemaRefs:schemaRefs,
+      schemaFormatted: schemaFormatted
     });
 });
 
