@@ -187,12 +187,10 @@ router.get('/', function (req, res, next) {
   res.render('ex-6',
     {
       title: 'Aufgabe 6',
-      description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod ' +
-      'tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam ' +
-      'et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum ' +
-      'dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor ' +
-      'invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo ' +
-      'dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
+      description: 'Als letzte Übung soll das Schema aus Aufgabe 5 erweitert werden. Es soll eine Möglichkeit geschaffen werden, ' +
+      'zusätzlich zu den bisherigen Daten, CDs des Interpreten anzugeben. Eine CD besteht dabei aus den Eigenschaften Name (name), ' +
+      'Erscheinungsjahr (release_year) und Label (label). Die CD soll in über eine eigene Definition abgebildet werden, ' +
+      'welche anschließend im Array CDs (cds) referenziert wird. Ein hierzu passende Json-Datei sieht wie folgt aus:',
       schema: schema,
       schemaRefs: schemaRefs,
       schemaFormatted: schemaFormatted

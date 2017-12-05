@@ -35,7 +35,7 @@ var schemaFormatted = jsonFormat(schema,jsonFormatConfig);
 router.get('/', function(req, res, next) {
   res.render('demo',
     { title: 'Demo',
-      description: 'Diese Aufgabe ist für die Demonstration des Tools gedacht. Das Ziel ist, ein JSON Dokument zu erstellen, ' +
+      description: 'Diese Aufgabe ist für die Demonstration des Tools gedacht. Das Ziel ist es, ein Json-Dokument zu erstellen, ' +
       'welches zu dem angegeben Schema passt. Das vorliegende Schema beschreibt ein Produkt aus einem Getränkemarkt. ' +
       'Die Pflichtfelder sind Id, Name und Preis, das (Inhalts-)Volumen hingegen ist optional.',
       schema:schema,

@@ -12,7 +12,7 @@ var schemaRefs = {
     "properties": {
       "name":{"type":"string"},
       "street_address": {"type": "string"},
-      "post_code": {"type": "string"},
+      "post_code": {"type": "integer"},
       "city": {"type": "string"}
     },
     "required": ["name","street_address", "city", "post_code"]
