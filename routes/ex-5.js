@@ -11,7 +11,7 @@ var jsonExample = {
   "name":"Daft Punk",
   "founded_in":1993,
   "biography":"Daft Punk ist eine im Jahr 1993 gegründete französische Formation der French-House-Musik ...."
-}
+};
 
 schemaFormatted.push(jsonFormat(jsonExample, jsonFormatConfig));
 
@@ -27,7 +27,8 @@ var schemaRefs = {
             "type":"string",
             "enum": ["string"]
           }
-        }
+        },
+        "required":["type"]
       },
 
       "founded_in": {
@@ -37,7 +38,8 @@ var schemaRefs = {
             "type":"string",
             "enum":["number","integer"]
           }
-        }
+        },
+        "required":["type"]
       },
       "biography":{
         "type":"object",
@@ -46,7 +48,8 @@ var schemaRefs = {
             "type:":"string",
             "enum":["string"]
           }
-        }
+        },
+        "required":["type"]
       }
     },
     "required":["name","founded_in","biography"]

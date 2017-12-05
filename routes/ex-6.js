@@ -6,16 +6,34 @@ var schemaRefs = {
     "type":"object",
     "properties": {
       "name": {
-        "type": "string",
-        "enum": ["string"]
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["string"]
+          }
+        },
+        "required":["type"]
       },
       "release_year" : {
-        "type":"string",
-        "enum":["integer","number"]
+        "type":"object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["integer", "number"]
+          }
+        },
+        "required":["type"]
       },
       "label": {
-        "type":"string",
-        "enum":["string"]
+        "type":"object",
+        "properties":{
+          "type":{
+            "type":"string",
+            "enum":["string"]
+          }
+        },
+        "required":["type"]
       }
     },
     "required":["name","release_year","label"]
@@ -24,29 +42,38 @@ var schemaRefs = {
     "type": "object",
     "properties": {
       "name": {
-        "type": "string",
-        "enum": ["string"]
-      },
-      "founded_in":{
-        "type": "string",
-        "enum":["number","integer"]
-      },
-      "biography":{
-        "type":"string",
-        "enum":["string"]
-      },
-      "cd":{
-        "type":"object",
+        "type": "object",
         "properties":{
-          "$ref":{
+          "type":{
             "type":"string",
-            "enum":["cd"]
+            "enum": ["string"]
           }
         },
-        "required":["$ref"]
+        "required":["type"]
+      },
+
+      "founded_in": {
+        "type":"object",
+        "properties":{
+          "type:":{
+            "type":"string",
+            "enum":["number","integer"]
+          }
+        },
+        "required":["type"]
+      },
+      "biography":{
+        "type":"object",
+        "properties":{
+          "type":{
+            "type:":"string",
+            "enum":["string"]
+          }
+        },
+        "required":["type"]
       }
     },
-    "required":["name","founded_in","biography","cd"]
+    "required":["name","founded_in","biography"]
   },
   "definitions":{
     "type":"object",
