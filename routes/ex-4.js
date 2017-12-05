@@ -1,16 +1,31 @@
 var express = require('express');
 var router = express.Router();
-
+var schema = {
+  "type":"object",
+  "properties" : {
+    "$schema": {
+      "type":"string"
+    },
+    "id":{
+      "type":"string"
+    },
+    "title":{
+      "type":"string"
+    },
+    "type":{
+      "type":"string"
+    }
+  },
+  "required":["$schema","$id","title","type"]
+}
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('ex-4',
     { title: 'Aufgabe 4',
-      description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod ' +
-      'tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam ' +
-      'et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum ' +
-      'dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor ' +
-      'invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo ' +
-      'dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'
+      description: 'Die Aufgabe besteht nun darin, ein gültiges Json-Schema zu definieren. Zum Einstieg genügt es, ' +
+      'ein Schema mit den vier Bestandteilen Schema-Definition ($schema), der Id ($id), dem Titel und dem Typ ' +
+      'zu definieren.',
+      schema: schema
     });
 });
 
