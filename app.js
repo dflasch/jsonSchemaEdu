@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
+app.use('/', demo);
 app.use('/demo', demo);
 app.use('/ex-1', ex1);
 app.use('/ex-2', ex2);
